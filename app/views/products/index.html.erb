@@ -1,0 +1,114 @@
+
+<div class="container mt-3">
+    <h1>Products</h1>
+        <table class="table table-striped" style="max-height: 800px; overflow:scroll; width:500px">
+            <thead class="table-dark">
+                <tr>
+                    <th></th>
+                            <th>name</th>
+                        <div class="form-check   "> Select all name
+                             <input type="checkbox" class="form-check-input     "  id="product-all-select">
+                             <label class="form-check-label   " for="product-all-select" ></label>
+                        </div>
+                    <th>price</th>
+                </tr>
+            </thead>
+            <tbody class="table-primary">
+                <% @products.each do |product|%>
+                    <tr id="product-select_<%= product.id %>">
+                        <td>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input  product-checkbox " id="product_<%= product.id%>" data-product-id ="<%= product.id%> ">
+                        <label class="form-check-label " for="product_<%= product.id%>" ></label>
+                    </div>
+                        </td >
+                            <td id="newProductCreate" ><%= product.name %></td>
+                            <td><%= product.price %></td>
+                 <% end %>
+            </tbody>
+        </table>
+    <div >
+        <button type= "button" id="destroy_product" class="     btn btn-dark"> delete product </button>
+        <%=link_to " new product" , new_product_path, data: { bs_toggle: "modal", bs_target: "#new-product", remote: :true },class:"btn btn-dark"%>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="new-product" tabindex="-1" aria-labelledby="NewProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="NewProductModalLabel">Create card modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id= "new-form">
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    
+ window.onload = function() {
+
+      $('#destroy_product').click(function () {
+        var productIds = [];
+          $('.product-checkbox').each(function(){
+              if($(this).prop('checked')){
+              productIds.push($(this).data('product-id'))
+              }
+          });
+    $.ajax({
+            url: '/products/delete_all',
+            type: 'DELETE',
+            data: { product_ids: productIds }
+            });
+        })
+
+            $("#product-all-select").on('click', function(){
+                $('.product-checkbox').prop('checked', $(this).prop('checked'))
+                var counter = 0;
+                if($(this).prop('checked')){
+                counter += $('.product-checkbox').length;
+                $('#destroy_product').text(`Delete ${pluralize(counter, 'product')}`)
+                $('#destroy_product').show()
+                } else {
+                $('#destroy_product').hide()
+                    
+                }
+                    
+                })
+    
+                    const pluralize = (counter, string) => {
+                        if(counter > 1) {
+                            return `${counter} ${string+'s'}`
+                        }else{
+                        return `${counter} ${string}`
+                        }
+                    }
+               
+             var counter = 0;
+                $('.product-checkbox').on('click', function(){
+                    if($(this).prop('checked')){
+                        counter += 1;
+                        // $("#delete-books").css('display', 'block');
+                        $('#destroy_product').text(`Delete ${pluralize(counter, 'product')}`)
+                        $('#destroy_product').show()
+                    }else{
+                        counter -= 1;
+                        $('#destroy_product').text(`Delete ${pluralize(counter, 'product')}`)
+                        if(counter <= 0){
+                            //$("#delete-books").css('display', 'none');
+                        $('#destroy_product').hide()  
+                        }
+                    }
+                    
+            });
+
+                }
+
+</script>
+
+ 

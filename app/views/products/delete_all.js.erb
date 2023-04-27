@@ -1,0 +1,5 @@
+
+<% params[:product_ids].each do |product_id| %>
+$('#product-select_<%= product_id %>').remove();
+<% end%>
+$("#destroy_product").hide();

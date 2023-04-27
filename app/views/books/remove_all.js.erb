@@ -1,0 +1,5 @@
+alert("123")
+<% params[:book_ids].each do |book_id| %>
+$('#book_select_<%= book_id %>').remove();
+<% end%>
+$("#destroy_book").hide();

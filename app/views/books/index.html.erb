@@ -1,0 +1,72 @@
+<div class="container mt-3">
+  <h3>Books</h3>
+  <table class="table table-striped" style="max-height: 800px; overflow:scroll; width:500px">
+    <thead class="table-dark">
+      <tr>
+        <th></th>
+        <th>writer</th>
+        <div class="form-check"> Select all Books
+                             <input type="checkbox" class="form-check-input" id="books-index-master">
+                            <label class="form-check-label" for="books-index-master"></label>
+                           </div>
+        <th>publish year</th>
+      </tr>
+    </thead>
+    <tbody class="table-info">
+      <%@books.each do |book|%>
+        <tr id='book_select_<%= book.id%>'>
+          <td>
+              <div class="form-check">
+                  <input type="checkbox" class="form-check-input book-select-check" id="book_<%= book.id %>" data-book-id="<%= book.id %>">
+                  <label class="form-check-label " for="book_<%= book.id%>"></label>
+              </div>
+          </td>
+          <td><%= book.writer %></td>
+          <td><%=book.publish_year %></td>
+        <tr>
+      <% end %>
+    </tbody>
+  </table>
+  <button type= "button" id="destroy_book"> delete book </button>
+</div>
+
+<script>
+    window.onload = function() {
+      $('#destroy_book').click(function () {
+        alert("hello")
+       
+        var bookIds = [];
+          $('.book-select-check').each(function(){
+              if($(this).prop('checked')){
+              bookIds.push($(this).data('book-id'))
+              }
+          });
+           
+          if(confirm("Are you sure you want to delete selected books? This action can not be undone. If you want to delete selected books click on the OK else click on Cancel.")){
+            debugger
+            $.ajax({
+              url: '/books/remove_all',
+              type: 'DELETE',
+              data: { book_ids: bookIds }
+            });
+          } else {
+          return false;
+          }
+      })
+
+      $("#books-index-master").on('click', function(){
+                $('.book-select-check').prop('checked', $(this).prop('checked'))
+
+                var counter = 0;
+
+                if($(this).prop('checked')){
+                  counter += $('.book-select-check').length;
+                  $('#destroy_book').text(`Delete ${pluralize(counter, 'book')}`)
+                  $('#destroy_book').show()
+                } else {
+                  $('#destroy_book').hide()
+                }
+              })
+
+    }
+</script>

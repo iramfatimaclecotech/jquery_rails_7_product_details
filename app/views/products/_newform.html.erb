@@ -1,0 +1,32 @@
+<div  >
+  <div class="color">
+    <h1>New Form </h1>
+      <%= form_with(model: product, local: false) do |form| %>
+        <div class="modal-body">
+        <div id="errorArea"></div>
+            <div>
+                <%= form.label :name %><br>
+                <%= form.text_field :name %>
+            </div>
+
+            <div>
+                <%= form.label :price %><br>
+                <%= form.text_field :price %>
+            </div>
+        </div> 
+        <div class="modal-footer">
+            <%= form.submit  class: "btn btn-primary btn-lg" %>
+            <button type="button" class="btn btn-secondary btn-lg close-modal" data-bs-dismiss="modal">Close</button>
+        </div>  
+    <% end %>
+  </div>
+</div>
+<style>
+.color{
+    color: #3f51b5;
+    background-color: #9e9e9e;
+}
+.background{
+   background-color: #9e9e9e;
+}
+</style>

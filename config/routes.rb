@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'details/index'
   get 'subjects/index'
   get 'books/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -15,6 +16,9 @@ Rails.application.routes.draw do
     collection do
       delete :delete_all
     end
+    
+      resources :details 
+    
   end
 
 

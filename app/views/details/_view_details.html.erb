@@ -1,0 +1,30 @@
+<h2>Details of <%=@product.name%></h2>
+
+<table class="table table-danger mt -5" style="max-height: 800px; overflow:scroll; width:500px">
+        <thead class="table-dark"> 
+            <tr>
+                <th scope="col">description</th>
+                <th scope="col">color</th>
+                <th scope="col">size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+             <% @product.details.each do |detail| %>
+            <td> <%= detail.description %></td>
+            <td><%= detail.color %></td>
+            <td><%= detail.size%></td>
+            </tr>
+            <%end%>
+        </tbody>
+        </table>
+    <style>
+
+    .mt-5 {
+    margin-top: 5rem !important;
+   font-family: Impact;
+    }
+.bg{
+    #607d8b54;
+}
+    </style>

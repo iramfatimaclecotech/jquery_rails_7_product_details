@@ -1,0 +1,27 @@
+<div  >
+  <div class="color ">
+    <h1>New Details Form </h1>
+     <%= form_for [@product, @product.details.build ], remote: true  do |form| %>
+        <div class="modal-body">
+        <div id="errorArea"></div>
+            <div>
+                <%= form.label :description %><br>
+                <%= form.text_field :description %>
+            </div>
+
+            <div>
+                <%= form.label :size %><br>
+                <%= form.text_field :size %>
+            </div>
+            <div>
+                <%= form.label :color %><br>
+                <%= form.text_field :color %>
+            </div>
+        </div> 
+        <div class="modal-footer">
+            <%= form.submit  class: "btn btn-primary btn-lg" %>
+            <button type="button" class="btn btn-secondary btn-lg close-modal" data-bs-dismiss="modal">Close</button>
+        </div>  
+    <% end %>
+  </div>
+</div>

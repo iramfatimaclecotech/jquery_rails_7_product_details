@@ -43,7 +43,7 @@
           });
            
           if(confirm("Are you sure you want to delete selected books? This action can not be undone. If you want to delete selected books click on the OK else click on Cancel.")){
-            debugger
+            
             $.ajax({
               url: '/books/remove_all',
               type: 'DELETE',

@@ -188,6 +188,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    select_all-rails (0.3.2)
     selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -243,6 +244,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   redis (~> 4.0)
   sassc-rails
+  select_all-rails
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)

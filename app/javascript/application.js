@@ -5,4 +5,4 @@ import "jquery"
 import "jquery_ujs"
 import "popper"
 import "bootstrap"
-
+import "select_all.js"

@@ -15,9 +15,8 @@ class ProductsController < ApplicationController
     @product = Product.create(product_params)
     if @product.save
       respond_to do |format|
-        format.js { flash[:info] = "The article with an ID of #{@product.id} has had their admin attribute toggled!" }
+        format.js { flash[:info] = "The product with a name of #{@product.name} has created!" }
       end
-      
     end
   end
 
@@ -25,7 +24,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
      @products = Product.where(id: params[:product_ids])
       @products.delete_all
-       format.js
+       format.js  { flash[:info] = "The product with an  of #{@product} has deleted!" }
      end
   end
 

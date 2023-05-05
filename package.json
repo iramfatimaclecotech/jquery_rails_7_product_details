@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "ckeditor4-angular": "^3.3.0",
+    "ckeditor4-react": "^4.2.0",
+    "ckeditor4-vue": "^2.3.0",
+    "jquery": "^3.6.4"
+  }
+}

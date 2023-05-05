@@ -1,41 +1,43 @@
-<div class="container mt-5">
-   <div class="row">
-      <div class="col">
-          <div class="mb-3" >
-			<%= form_tag("/home/show_data", :method => "get", remote: :true) do %>
-            <%= select_tag :hour_product_id, options_for_select( Product.all.collect {|p| [p.name, p.id]},  {prompt: "Select", class: 'form-control'}), class: "select2_dashboard form-control" %>
-          </div>
-          <div class="mb-3" >
-            <%#= f.select(:detail_id, Tasks.all.collect {|t| [t.name, t.id]}, {}, {class: 'form-control'}) %>
-            <%#= select_tag :hour_detail_id,options_for_select({}, { prompt: "Select",class: 'form-control  select2_dashboard form-control'}),class:"select2_dashboard form-control",id:"hour_detail_id " %>
-			<%= select_tag :detail_ids, options_for_select({}), {class: "select2_dashboard form-control",multiple: :true, id: "hour_detail_id"} %>
-          </div>
-		   <%= submit_tag("details") %>
-		  <% end %>
-		  <%= link_to "back to homePage", products_path %>
-      <div>
-   </div>
+<div class="container mt-5 ">
+		<div class="row">
+			<div class="col-6">
+				<div class="mb-3" >
+					<%= form_tag("/home/show_data", :method => "get", remote: :true) do %>
+					<%= select_tag :hour_product_id, options_for_select( Product.all.collect {|p| [p.name, p.id]},  {prompt: "Select", class: 'form-control'}), class: "select2_dashboard form-control" %>
+				</div>
+				<div class="mb-3" >
+					<%= select_tag :detail_ids, options_for_select({}), {class: "form-control select2_tab_dashboard ",multiple: true, id: "hour_detail_id"} %>
+				</div>
+					<%= submit_tag("details") %>
+						<% end %>
+					<%= link_to "back to homePage", products_path ,class:"btn btn-dark" %>
+				<div>
+				<div class="col-6">
+					<div id="detail_id" ></div>
+				</div>
+		</div>
 </div>
-<div id="detail_id" ></div>
 
 
 <script>
+		window.onload = function() {
 
-window.onload = function() {
-		$("#hour_detail_id").prop("disabled", true); // second dropdown is disable while first dropdown is empty
-		$("#hour_product_id").change(function(){
-			var product = $(this).val();
-			if(product == ''){
-				$("#hour_detail_id").prop("disabled", true);
-			}else{
-				$("#hour_detail_id").prop("disabled", false);
-			}
+			$("#hour_detail_id").prop("disabled", true); // second dropdown is disable while first dropdown is empty
+			$("#hour_product_id").change(function(){
+				var product = $(this).val();
+				if(product == ''){
+					$("#hour_detail_id").prop("disabled", true);
+				}else{
+					$("#hour_detail_id").prop("disabled", false);
+				}
+				
 			$.ajax({
 				url: "home/dropdown",
 				method: "GET",  
 				dataType: "json",
 				data: {product: product},
 				success: function(data) {
+					console.log(product)
 					if(data.length > 0){
 						var listitems = [];
 					    $.each(data, function(index, record) {
@@ -48,7 +50,13 @@ window.onload = function() {
 
 		});
 
-
 }
 
 </script>
+<style>
+.w
+{ max-width: 500px;
+}
+</style>
+
+

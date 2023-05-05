@@ -1,2 +1,3 @@
-
+console.log("This is the create.js.erb file");
 $('#newProductCreate').html("<%= j render partial: 'newshow', locals: { product: @product } %>")
+$('#flash-message').html("<%= j render 'products/flash' %>").delay(4000).fadeOut(4000);

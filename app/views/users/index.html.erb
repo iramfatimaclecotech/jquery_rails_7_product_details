@@ -1,0 +1,33 @@
+<center>
+        <div class="container  wt">
+            <div id="new-user">
+                <div id="show-user">
+                    <table class="table table-info">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="table-dark">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <%@users.each do |user| %>
+                                <td><%=link_to  "#{user.name}".html_safe, user ,remote: :true%></td>
+                            </tr>
+                            <%end%>
+                                <td><%= link_to"new user" ,new_user_path , remote: :true, class:"btn btn-dark" %></td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+</center>
+
+<style>
+
+.wt{
+    max-width: 500px;
+}
+</style>
+
+            
+            

@@ -19,9 +19,8 @@ class DetailsController < ApplicationController
     @detail = @product.details.create(detail_params)
     if @detail.save
       respond_to do |format|
-        format.js { flash[:info] = "The article with an ID of #{@product.id} has had their admin attribute toggled!" }
+        format.js { flash[:info] = "The detail with a Product of #{@product.id} has created!" }
       end
-      
     end
   end
 
@@ -34,6 +33,6 @@ class DetailsController < ApplicationController
 
   private
     def detail_params
-      params.require(:detail).permit(:discription, :size,:color,:product_id)
+      params.require(:detail).permit(:description, :size,:color,:product_id)
     end
 end

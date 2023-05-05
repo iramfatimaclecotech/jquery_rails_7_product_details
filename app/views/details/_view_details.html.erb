@@ -10,14 +10,16 @@
         </thead>
         <tbody>
             <tr>
-             <% @product.details.each do |detail| %>
+             <%@product.details.each do |detail| %>
             <td><%= detail.description %></td>
             <td><%= detail.color %></td>
             <td><%= detail.size%></td>
             </tr>
             <%end%>
         </tbody>
-        </table>
+</table>
+
+
     <style>
 
     .mt-5 {

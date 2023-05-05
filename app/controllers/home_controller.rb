@@ -15,5 +15,6 @@ class HomeController < ApplicationController
     def show_data
         @product= Product.find(params[:hour_product_id])
         @detail_ids = params[:detail_ids]
+        
     end
 end

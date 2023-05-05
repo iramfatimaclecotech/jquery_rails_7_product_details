@@ -70,7 +70,9 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-gem "jquery-rails"
+
 gem "bootstrap"
+gem "jquery-rails"
 gem "sassc-rails"
-gem 'select_all-rails'
+gem 'ckeditor'
+gem "mini_magick"

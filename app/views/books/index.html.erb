@@ -56,9 +56,7 @@
 
       $("#books-index-master").on('click', function(){
                 $('.book-select-check').prop('checked', $(this).prop('checked'))
-
                 var counter = 0;
-
                 if($(this).prop('checked')){
                   counter += $('.book-select-check').length;
                   $('#destroy_book').text(`Delete ${pluralize(counter, 'book')}`)

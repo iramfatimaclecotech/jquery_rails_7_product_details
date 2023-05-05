@@ -1,0 +1,7 @@
+<div class="container">
+  <%flash.each do |type, msg| %>
+    <div class="alert alert-primary" role="alert"  width="2" height="2" <%= bootstrap_class_for_flash(type) %> >
+        <%= msg %>
+    </div>
+  <% end %> 
+</div>

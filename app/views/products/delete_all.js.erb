@@ -3,3 +3,4 @@
 $('#product-select_<%= product_id %>').remove();
 <% end%>
 $("#destroy_product").hide();
+$('#flash-message').html("<%= j render 'products/flash' %>").delay(4000).fadeOut(4000);

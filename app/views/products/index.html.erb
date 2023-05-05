@@ -1,24 +1,23 @@
-
-<div class="container text-center mt-5" >
-    <div class="row">
-        <div class="col-6">
-            <div class="container mt-3">
-                <h1>Products</h1>
-                    <table class="table table-striped" style="max-height: 800px; overflow:scroll; width:500px">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>name</th>
-                            <th>price</th>
-                            <th>details</th>
-                            <td><div class="form-check   "> Select All name
-                                    <input type="checkbox" class="form-check-input  "  id="product-all-select">
-                                    <label class="form-check-label " for="product-all-select" ></label>
-                                </div>
-                            </td>
-                            <th>details</th>
-                            
-                        </tr>
-                    </thead>
+<div id="flash-message" class="mt-3"></div>
+    <div class="container text-center mt-5 " >
+        <div class="row">
+            <div class="col-6">
+                <div class="container mt-3">
+                    <h1>Products</h1>
+                        <table class="table table-striped" style="max-height: 800px; overflow:scroll; width:500px">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>name</th>
+                                    <th>price</th>
+                                    <th>details</th>
+                                    <td><div class="form-check   "> Select All name
+                                        <input type="checkbox" class="form-check-input  "  id="product-all-select">
+                                        <label class="form-check-label " for="product-all-select" ></label>
+                                    </div>
+                                    </td>
+                                    <th>details</th>
+                                </tr>
+                            </thead>
                             <tbody class="table-primary">
                                     <% @products.each do |product|%>
                                         <tr id="product-select_<%= product.id %>">
@@ -28,14 +27,13 @@
                                                 <label class="form-check-label " for="product_<%= product.id%>" ></label>
                                         </div>
                                                 </td>
-                                                    <td id="newProductCreate"
-                                                    ><%= product.name %></td>
+                                                    <td id="newProductCreate">
+                                                    <%= product.name %></td>
                                                     <td><%= product.price %></td>
-                                                    <td><%=link_to " view product details" ,  product_path(product.id),remote: :true, class:"btn btn-dark"%> 
+                                                    <td><%=link_to " view product details" , product_path(product.id),remote: :true, class:"btn btn-dark s s1  "%> 
                                                 </td> 
-                                                <td><%=link_to " Add New details" ,  new_product_detail_path(product.id),data: { bs_toggle: "modal", bs_target: "#new-details", remote: :true }, class:"btn btn-dark"%> 
+                                                <td><%=link_to " Add New details" ,  new_product_detail_path(product.id),data: { bs_toggle: "modal", bs_target: "#new-details", remote: :true }, class:"btn btn-dark "%></td>
                                     <% end %>
-
                                     </div>
                             </tbody>
                     </table>
@@ -45,24 +43,24 @@
       <div id="show-product"></div>
     </div>
 </div>
-
     <div>
-        <button type= "button" id="destroy_product" class="  btn btn-dark"> delete product </button>
-            <%=link_to " new product" , new_product_path, data: { bs_toggle: "modal", bs_target: "#new-product", remote: :true },class:"btn btn-dark"%>
+        <button type= "button" id="destroy_product" class="  btn btn-dark  d d1"> delete product </button>
+        <%= link_to " new product" , new_product_path, data: { bs_toggle: "modal", bs_target: "#new-product", remote: :true },class:"btn btn-dark " %>
     </div>
 
 <div class="modal fade" id="new-product" tabindex="-1" aria-labelledby="NewProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="NewProductModalLabel">Create card modal</h5>
+                <h5 class="modal-title" id="NewProductModalLabel"> Create card modal</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id= "new-form">
+                <div id= "new-form">
             </div>
         </div>
     </div>
 </div> 
+
 
 <div class="modal fade" id="new-details" tabindex="-1" aria-labelledby="NewDetailModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -71,20 +69,14 @@
                 <h5 class="modal-title" id="NewDetailModalLabel">Create New details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div id= "new-detailform">
+                <div id= "new-detailform">
             </div>
         </div>
     </div>
 </div> 
 
 <div id="new-detailform"></div>
-
-
-
-
-
-
-
+    <%#= render 'products/flash'%>
 
 <script>
     
@@ -103,7 +95,6 @@
             data: { product_ids: productIds }
             });
         })
-
             $("#product-all-select").on('click', function(){
                 $('.product-checkbox').prop('checked', $(this).prop('checked'))
                 var counter = 0;
@@ -117,7 +108,6 @@
                 }
                     
                 })
-    
                     const pluralize = (counter, string) => {
                         if(counter > 1) {
                             return `${counter} ${string+'s'}`
@@ -144,16 +134,48 @@
                     
             });
 
+            $(".d1").click(function(){
+                   $(".d").fadeToggle(3000);
+                    alert("fade");
+                   
+                });
+
+                $(".p1").mouseup(function(){
+                    alert("You are in view  product details!");
+                });
+
+                $(".p2").mouseenter(function(){
+                    alert("You are in  add product details!");
+                });
+
+               $(".p3").click(function(){
+                   $(".p4").fadeToggle(3000);
+                    alert("fade");
+                   
+                });
+
+                $(".s").click(function(){
+                        $(".s1").hide("slow", function(){
+                            alert("The details is now hidden");
+                        });
+                    });
+
+                $(".b").click(function(){
+                        $("b1").addClass("class");
+                    });
+
+
+
                 }
 
 </script>
 <style>
+        .mt-5 {
+            margin-top: 3rem !important;
+            font-family: Impact;
+    }
 
-    .mt-5 {
-        margin-top: 3rem !important;
-        font-family: Impact;
-}
-    </style>
+</style>
 
 
  

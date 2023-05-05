@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :rooms
+
+  # mount ActionCable.server, at: '/cable'
+  
+  get 'comments/index'
+  get 'posts/index'
+  mount Ckeditor::Engine => '/ckeditor'
+  get 'users/index'
   get 'details/index'
   get 'subjects/index'
   get 'books/index'
@@ -6,10 +14,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
+  root "posts#index"
+  resources :posts do
+    resources :comments
+  end
   
-  #resources :homes
-  
-  root "home#index"
+  #root "home#index"
   get "home/dropdown"
   get "home/show_data"
   
@@ -18,7 +28,8 @@ Rails.application.routes.draw do
       delete :remove_all
     end
   end
-
+  resources :users
+    
   resources :products do
     collection do
       delete :delete_all

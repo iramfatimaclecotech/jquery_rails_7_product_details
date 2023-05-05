@@ -1,2 +1,3 @@
-alert("create")
+
 $('#new-detailform').html("<%= j render partial: 'view_details', locals: { detail: @detail } %>")
+$('#flash-message').html("<%= j render 'products/flash' %>").delay(4000).fadeOut(4000);
